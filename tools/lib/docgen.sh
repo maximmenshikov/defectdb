@@ -10,7 +10,6 @@ function cleanup_docgen()
     rm -rf "${build_dir}/rst"
     rm -rf "${build_dir}/xml"
     rm -rf "${build_dir}/doxyrest"
-    rm -rf "${build_dir}/sphinx_theme"
 
     return 0
 }

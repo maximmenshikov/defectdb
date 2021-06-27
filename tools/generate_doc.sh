@@ -38,7 +38,9 @@ pushd "${build_folder}" > /dev/null
     export THEME_PATH="${REAL_THEME_PATH}/themes"
 
     # Download theme
-    theme_download "${REAL_THEME_PATH}"
+    if [ ! -d "${REAL_THEME_PATH}" ] ; then
+        theme_download "${REAL_THEME_PATH}"
+    fi
 
     if [ -n "${include_doxyrest}" ] ; then
         # Build the documentation using Doxygen

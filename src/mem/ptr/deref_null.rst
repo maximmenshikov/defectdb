@@ -3,7 +3,25 @@
 Null pointer dereference
 ========================
 
-Dereferencing null pointer might have harmful effect on the application.
+Dereferencing null pointer might have harmful effect on the application or the
+complete operating system.
+
+Impact
+~~~~~~
+In case there is no page assigned to null address, accessing data by that
+address and all adjacent addresses will terminate the application. For the
+kernel mode, the defect will panic the kernel.
+
+Vulnerability potential
+~~~~~~~~~~~~~~~~~~~~~~~
+This issue has a potential to be a vulnerability.
+
+1. Since the default behavior is to terminate the application or panic the
+   kernel, this defect might be used as a part of Denial of Service attack.
+2. The termination of application might open other security issues in complex
+   systems, leading to the attacker gaining access to the system.
+3. If attacker has an access to signal handler, this defect may be used to
+   perform remote code execution.
 
 Technical details
 ~~~~~~~~~~~~~~~~~
@@ -20,6 +38,8 @@ Microcontrollers
 Beware that most microcontrollers have null address page mapped to the vector
 of interrupt handlers. Changing the value on that address may have serious
 impact and may come unattended.
+
+
 
 Catching the issue
 ~~~~~~~~~~~~~~~~~~
